@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "906289639235",
+    "firebase_url": "https://android-native-firebase.firebaseio.com",
+    "project_id": "android-native-firebase",
+    "storage_bucket": "android-native-firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906289639235:android:6fbe021009ec1327",
+        "android_client_info": {
+          "package_name": "danielfnz.com.br.androidfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906289639235-3ftj5cnkhjtsecq1dt90mb7m12atc5ud.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "danielfnz.com.br.androidfirebase",
+            "certificate_hash": "3b4a34b32c16ebd9a26d2fe0665a356d477f51ed"
+          }
+        },
+        {
+          "client_id": "906289639235-m933i81ic0gb9rodfm84b72ga3u9biko.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0xzr2R-Vr-anO35XyRubomp8CnUTLDVk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906289639235-m933i81ic0gb9rodfm84b72ga3u9biko.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

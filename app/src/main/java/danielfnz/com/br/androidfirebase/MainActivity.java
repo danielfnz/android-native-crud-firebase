@@ -3,7 +3,10 @@ package danielfnz.com.br.androidfirebase;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,13 +26,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import danielfnz.com.br.androidfirebase.model.Pessoa;
+import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    Pessoa pessoaSelecionada;
 
     ListView listaViewPessoas;
-    Button btnAdicionar;
     EditText nomeP, apelP, emailP, passwdP;
 
     private List<Pessoa> listaPessoa = new ArrayList<>();
@@ -42,21 +46,20 @@ public class MainActivity extends AppCompatActivity {
         this.inicializarFirebase();
 
         this.listaViewPessoas = (ListView) findViewById(R.id.listaPessoas);
-        this.btnAdicionar = (Button) findViewById(R.id.adicionar);
 
         nomeP = (EditText) findViewById(R.id.nome);
         apelP = (EditText) findViewById(R.id.apelido);
         emailP = (EditText) findViewById(R.id.email);
         passwdP = (EditText) findViewById(R.id.senha);
 
-        this.btnAdicionar.setOnClickListener(new View.OnClickListener() {
+        listaViewPessoas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
-                if (nomeP.getText().toString().equals("") || apelP.getText().toString().equals("") || emailP.getText().toString().equals("")) {
-                    valida();
-                } else {
-                    addPessoa();
-                }
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                pessoaSelecionada = (Pessoa) parent.getItemAtPosition(position);
+                nomeP.setText(pessoaSelecionada.getNome());
+                apelP.setText(pessoaSelecionada.getApelido());
+                emailP.setText(pessoaSelecionada.getEmail());
+                passwdP.setText(pessoaSelecionada.getSenha());
             }
         });
     }
@@ -69,36 +72,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void addPessoa(){
-        String nome = nomeP.getText().toString();
-        String apelido = apelP.getText().toString();
-        String email = emailP.getText().toString();
-        String senha = passwdP.getText().toString();
-
-        Pessoa pessoa = new Pessoa();
-
-        pessoa.setNome(nome);
-        pessoa.setApelido(apelido);
-        pessoa.setEmail(email);
-        pessoa.setSenha(senha);
-
-        databaseReference.child("pessoa").push().setValue(pessoa).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Toast.makeText(getApplicationContext(),"Adicionado",Toast.LENGTH_LONG).show();
-                limparcampos();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(),"Falha ao adicionar",Toast.LENGTH_LONG).show();
-            }
-        });
-
-    }
-
     private void getPessoas() {
-        databaseReference.child("pessoa").addValueEventListener(new ValueEventListener() {
+        databaseReference.child("Pessoa").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 listaPessoa.clear();
@@ -142,5 +117,71 @@ public class MainActivity extends AppCompatActivity {
             passwdP.setError("Campo Requerido");
         }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        String nome = nomeP.getText().toString();
+        String apelido = apelP.getText().toString();
+        String email = emailP.getText().toString();
+        String senha = passwdP.getText().toString();
+
+        switch (item.getItemId()){
+            case R.id.icon_add: {
+                if (nome.equals("") || apelido.equals("") || email.equals("")) {
+                    valida();
+                } else {
+                    Pessoa p = new Pessoa();
+                    p.setUID(UUID.randomUUID().toString());
+                    p.setNome(nome);
+                    p.setApelido(apelido);
+                    p.setEmail(email);
+                    p.setSenha(senha);
+
+                    databaseReference.child("Pessoa").child(p.getUID()).setValue(p);
+                    Toast.makeText(this,"Adicionado",Toast.LENGTH_LONG).show();
+                    limparcampos();
+                }
+
+                break;
+            }
+
+            case R.id.icon_del:{
+
+                Pessoa p = new Pessoa();
+                p.setUID(pessoaSelecionada.getUID());
+                databaseReference.child("Pessoa").child(p.getUID()).removeValue();
+                Toast.makeText(this,"Registro Excluído",Toast.LENGTH_LONG).show();
+                limparcampos();
+                break;
+            }
+
+            case R.id.icon_save:{
+
+                Pessoa p = new Pessoa();
+                p.setUID(pessoaSelecionada.getUID());
+                p.setNome(nomeP.getText().toString());
+                p.setApelido(apelP.getText().toString());
+                p.setEmail(emailP.getText().toString());
+                p.setSenha(passwdP.getText().toString());
+
+                databaseReference.child("Pessoa").child(p.getUID()).setValue(p);
+                Toast.makeText(this,"Alterado",Toast.LENGTH_LONG).show();
+                limparcampos();
+
+                break;
+            }
+
+            default:break;
+        }
+        return true;
+    }
+
 
 }

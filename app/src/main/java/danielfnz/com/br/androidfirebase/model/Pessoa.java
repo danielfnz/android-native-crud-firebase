@@ -6,6 +6,7 @@ package danielfnz.com.br.androidfirebase.model;
 
 public class Pessoa {
 
+    private String UID;
     private String nome;
     private String apelido;
     private String email;
@@ -20,6 +21,14 @@ public class Pessoa {
         this.apelido = apelido;
         this.email = email;
         this.senha = senha;
+    }
+
+    public String getUID() {
+        return UID;
+    }
+
+    public void setUID(String UID) {
+        this.UID = UID;
     }
 
     public String getNome() {

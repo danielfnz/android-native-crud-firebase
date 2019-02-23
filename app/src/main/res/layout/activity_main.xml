@@ -5,67 +5,77 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_margin="8dp"
+    android:padding="15dp"
     tools:context="danielfnz.com.br.androidfirebase.MainActivity">
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nome">
 
     <EditText
         android:id="@+id/nome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Nome"
-        android:inputType="textPersonName"
+            android:inputType="textPersonName"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Apelido">
 
     <EditText
         android:id="@+id/apelido"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Apelido"
         android:inputType="textPersonName"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="64dp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email">
 
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Email"
         android:inputType="textEmailAddress"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="121dp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Senha">
 
     <EditText
         android:id="@+id/senha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Senha"
         android:inputType="textPassword"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="180dp" />
-
-    <Button
-        android:id="@+id/adicionar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:text="Adicionar Pessoa"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="231dp" />
+    </android.support.design.widget.TextInputLayout>
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="50px"
-        android:text="LISTA DE PESSOAS"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
-        tools:layout_editor_absoluteX="131dp"
-        tools:layout_editor_absoluteY="301dp" />
+        android:textSize="30dp"
+        android:layout_margin="10dp"
+        android:layout_gravity="center_horizontal"
+        android:text="Lista de Pessoas"/>
 
     <ListView
         android:id="@+id/listaPessoas"

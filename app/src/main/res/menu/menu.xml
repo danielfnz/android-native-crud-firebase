@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/icon_add"
+        android:icon="@drawable/add"
+        android:title="Adicionar"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/icon_save"
+        android:icon="@drawable/save"
+        android:title="Salvar"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/icon_del"
+        android:icon="@drawable/delete"
+        android:title="Deletar"
+        app:showAsAction="always" />
+</menu>

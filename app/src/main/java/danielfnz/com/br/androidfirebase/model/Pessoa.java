@@ -11,6 +11,10 @@ public class Pessoa {
     private String email;
     private String senha;
 
+    public Pessoa() {
+
+    }
+
     public Pessoa(String nome, String apelido, String email, String senha) {
         this.nome = nome;
         this.apelido = apelido;

@@ -2,9 +2,9 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/icon_add"
-        android:icon="@drawable/add"
-        android:title="Adicionar"
+        android:id="@+id/icon_del"
+        android:icon="@drawable/delete"
+        android:title="Deletar"
         app:showAsAction="always" />
     <item
         android:id="@+id/icon_save"
@@ -12,8 +12,8 @@
         android:title="Salvar"
         app:showAsAction="always" />
     <item
-        android:id="@+id/icon_del"
-        android:icon="@drawable/delete"
-        android:title="Deletar"
+        android:id="@+id/icon_add"
+        android:icon="@drawable/add"
+        android:title="Adicionar"
         app:showAsAction="always" />
 </menu>
